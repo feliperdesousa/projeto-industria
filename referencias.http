@@ -1,0 +1,15 @@
+###
+
+GET http://localhost:3000/produtos
+###
+
+GET http://localhost:3000/produtos/1
+###
+
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+  "nome": "Nevou",
+  "preco": 35.00
+}
