@@ -25,6 +25,12 @@ servidor.get('/usuarios', async () => {
 });
 
 
+servidor.get('/financeiro', async () => {
+    const resultado = await sql.query('select * from financeiro')
+    return resultado.rows
+});
+
+
 servidor.post('/login', async (request, reply) => {
     const email = request.body.email;
     const senha = request.body.senha;
@@ -65,6 +71,21 @@ servidor.post('/cadastrar', async (request, reply) => {
     const resultado = await sql.query('insert into usuarios (nome, email, senha) values ($1, $2, $3)',[nome, email, senha]);
 
     return reply.status(201).send({mensagem: "Usuário cadastrado com sucesso!"})
+});
+
+
+servidor.post('/financeiro', async (request, reply) => {
+    const tipo = request.body.tipo;
+    const descricao = request.body.descricao;
+    const valor = request.body.valor;
+
+    if (!tipo || !descricao || !valor) {
+        return reply.status(400).send({error: "Tipo, descrição e valor são obrigatórios!"})
+    };
+
+    const resultado = await sql.query('insert into financeiro (tipo, descricao, valor) values ($1, $2, $3)',[tipo, descricao, valor]);
+
+    return reply.status(201).send({mensagem: "Movimentação cadastrada com sucesso!"})
 });
 
 

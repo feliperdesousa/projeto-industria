@@ -2,6 +2,9 @@
 GET http://localhost:3000/usuarios
 
 ###
+GET http://localhost:3000/financeiro
+
+###
 POST http://localhost:3000/login
 Content-Type: application/json
 
@@ -18,4 +21,14 @@ Content-Type: application/json
     "nome": "felipe",
     "email": "felipe@email.com",
     "senha": "123456"
+}
+
+###
+POST http://localhost:3000/financeiro
+Content-Type: application/json
+
+{
+    "tipo": "entrada",
+    "descricao": "Venda de produto",
+    "valor": 100.00
 }
